@@ -35,8 +35,41 @@ public class Cliente {
 		
 		System.out.flush();
 		System.out.println(entradaServidor.readUTF()); //Leemos que nos pide las minusculas de la contra
-		//mayusculasLinea = entradaServidor.readUTF();
 		
+		//Enviamos las minusculas al servidor
+		linea = consola.readLine();
+		salida.writeBytes(linea+"\n"); //Necesita un /n para que se envie
+		
+		//MAYUS
+		System.out.println(entradaServidor.readUTF());
+		linea = consola.readLine();
+		salida.writeBytes(linea+"\n");
+		
+		//DIGITOS
+		System.out.println(entradaServidor.readUTF());
+		linea = consola.readLine();
+		salida.writeBytes(linea+"\n");
+		
+		//ESPECIALES
+		System.out.println(entradaServidor.readUTF());
+		linea = consola.readLine();
+		salida.writeBytes(linea+"\n");
+		
+		
+		//Longitud + generar contraseña
+		System.out.println(entradaServidor.readUTF());	//Longitud
+		System.out.println(entradaServidor.readUTF());	//generar?
+		
+		linea = consola.readLine();
+		while(!linea.equals("si") && !linea.equals("no")) {
+			System.out.println("Valor invalido, solo se acepta si o no");
+			linea = consola.readLine();
+		}
+		salida.writeBytes(linea+"\n");
+		
+		
+		//Recibimos o se denega la contraseña
+		System.out.println(entradaServidor.readUTF());
 		
 		//Vuelve el bucle para enviar algo mas. Esto sirve para que no se cierre aun, que puedas escribir algo en el cliente
 		System.out.flush();
@@ -45,7 +78,7 @@ public class Cliente {
         
 
 		
-		System.out.print("Servidor Cerrado");
+		System.out.print("Cliente Cerrado");
         salida.close();
         entradaServidor.close();
         socket.close();
