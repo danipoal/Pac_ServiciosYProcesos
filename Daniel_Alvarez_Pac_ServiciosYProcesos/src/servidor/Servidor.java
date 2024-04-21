@@ -100,8 +100,7 @@ public class Servidor {
 			
 			while (linea != null){	//Esto ira antes del close para que no se cierre
 				
-
-				}
+ 				}
             socket.close();
         }
     }
